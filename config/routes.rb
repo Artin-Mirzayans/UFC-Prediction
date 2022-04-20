@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  get "add". to: "add#new"
+
   root to: "main#index"
 
 end
