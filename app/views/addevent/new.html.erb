@@ -1,0 +1,45 @@
+    <h1>Add Event</h1>
+    
+    <%= form_with model: @event, url: add_path do |form| %>
+
+    <% if form.object.errors.any?%>
+
+    <div class="alert alert-danger">
+        <% form.object.errors.full_messages.each do |message|%>
+        <div><%= message%></div>
+        <% end %>
+    </div>
+    <% end %>
+    
+    <div class="mb-3">
+        <%=form.label :event_name, "Event Name" %>
+        <%= form.text_field :event_name, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :f1, "Fighter 1"%>
+        <%= form.text_field :f1, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :f2, "Fighter 2"%>
+        <%= form.text_field :f2, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :f3, "Fighter 3"%>
+        <%= form.text_field :f3, class: "form-control"%>
+    </div>
+
+
+    <div class="mb-3">
+        <%= form.label :f4, "Fighter 4"%>
+        <%= form.text_field :f4, class: "form-control"%>
+    </div>
+
+
+    <div class="mb-3">
+        <%= form.submit class: "btn btn-primary"%>
+    </div>
+
+    <% end %>
