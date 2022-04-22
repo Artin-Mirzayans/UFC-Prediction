@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
-  root to: "main#index"
+  get "add", to: "addevent#new"
+  post "add", to: "addevent#create"
+
+  get "events/:event_name", to: "events#show"
+  post "events", to: "events#route"
+  root to: "events#index"
 
 end

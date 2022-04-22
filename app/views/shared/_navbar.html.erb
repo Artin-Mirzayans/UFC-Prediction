@@ -13,7 +13,24 @@
         <%= link_to "About", about_path, class: "nav-link"%>
         </li>
 
+        <% if Current.user %>
+
+        <li class="nav-item">
+        <%= button_to "Add Event", add_path, method: :get, class: "nav-link"%>
+
+        <% end %>
+
+        <li class ="nav-item">
+          <%= form_with url: '/events', method: :post do |f| %>
+          <%=select_tag "event", options_from_collection_for_select(@events, "event_name", "event_name")%>
+
+        <div class="mb-3">
+          <%= f.submit %>
+        </div>
+        <% end %>
+
       </ul>
+
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if Current.user %>
@@ -23,6 +40,9 @@
         </li>
 
         <%= button_to "Logout", logout_path, method: :delete, class: "nav-link"%>
+
+        </li>
+
 
         <% else %>
 

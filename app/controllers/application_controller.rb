@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :set_current_user
+    before_action :set_current_user, :getEvents
 
     def set_current_user
         if session[:user_id]
@@ -11,4 +11,7 @@ class ApplicationController < ActionController::Base
         redirect_to sign_in_path if Current.user.nil?
     end
 
+    def getEvents
+        @events = Event.all
+    end
 end
