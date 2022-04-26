@@ -20,7 +20,6 @@
 
         <% end %>
 
-        <li class ="nav-item">
           <%= form_with url: '/events', method: :post do |f| %>
           <%=select_tag "event", options_from_collection_for_select(@events, "event_name", "event_name")%>
 

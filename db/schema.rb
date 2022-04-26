@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_21_041140) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_26_234512) do
   create_table "events", force: :cascade do |t|
     t.string "event_name", null: false
     t.string "f1", null: false
@@ -19,6 +19,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_041140) do
     t.datetime "updated_at", null: false
     t.string "f3", null: false
     t.string "f4", null: false
+    t.string "status"
+  end
+
+  create_table "predictions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.string "fighter_guess"
+    t.string "method_guess"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer "event_id"
+    t.string "fighter_actual"
+    t.string "method_actual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +44,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_041140) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "correct_fg", default: 0
+    t.integer "correct_mg", default: 0
+    t.integer "incorrect_fg", default: 0
+    t.integer "incorrect_mg", default: 0
   end
 
 end
