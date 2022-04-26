@@ -1,20 +1,67 @@
  <div>
   <h3><%= @event.event_name %></h3>
+
   <ul>
     <li>
       <%= @event.f1 %>
     </li>
-        <li>
+
+    <li>
       <%= @event.f2 %>
     </li>
-        <li>
+
+  </ul>
+  
+  <% if @prediction1.present? %>
+    <%= form_with url: update_prediction_path, model:Prediction,  method: :patch do |form| %>
+    <%= form.select :fighter_guess, [@event.f1, @event.f2] %>
+    <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
+    <%= form.hidden_field :hoopla, :value => @prediction1.id %>
+    <%= form.submit "Modify"%>
+  <% end %>
+
+<% else %>
+    <%= form_with url: predict_path, model:Prediction,  method: :post do |form| %>
+    <%= form.select :fighter_guess, [@event.f1, @event.f2] %>
+    <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
+    <%= form.hidden_field :user_id, :value => Current.user.id %>
+    <%= form.hidden_field :event_id, :value => @event.id %>
+    <%= form.submit "Submit Prediction"%>
+<% end %>
+
+
+<%end%>
+
+
+  <ul>
+
+     <li>
       <%= @event.f3 %>
     </li>
-        <li>
+     <li>
       <%= @event.f4 %>
     </li>
-    <ul>
-    </div>
+  </ul>
 
+   <% if @prediction2.present? %>
+
+    <%= form_with url: update_prediction_path, model:Prediction,  method: :patch do |form| %>
+      <%= form.select :fighter_guess, [@event.f3, @event.f4] %>
+      <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
+      <%= form.hidden_field :hoopla, :value => @prediction1.id %>
+      <%= form.submit "Modify"%>
+    <% end %>
+
+  <% else %>
+
+    <%= form_with url: predict_path, model:Prediction, method: :post do |form| %>
+      <%= form.select :fighter_guess, [@event.f3, @event.f4] %>
+      <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
+      <%= form.hidden_field :user_id, :value => Current.user.id %>
+      <%= form.hidden_field :event_id, :value => @event.id %>
+    <%= form.submit "Submit Prediction"%>
+  <% end %>
+
+  <% end %>
 
 </div>
