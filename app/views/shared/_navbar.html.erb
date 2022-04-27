@@ -19,12 +19,42 @@
         <%= button_to "Add Event", add_path, method: :get, class: "nav-link"%>
 
         <% end %>
-
+        <li>
+        Upcoming Events
+        </li>
+          <li>
           <%= form_with url: '/events', method: :post do |f| %>
-          <%=select_tag "event", options_from_collection_for_select(@events, "event_name", "event_name")%>
+          </li>
+          <%=select_tag "event", options_from_collection_for_select(@upcoming_events, "event_name", "event_name")%>
 
         <div class="mb-3">
-          <%= f.submit %>
+          <%= f.submit "Go"%>
+        </div>
+        <% end %>
+
+         <li>
+        In-Progress Events
+        </li>
+          <li>
+          <%= form_with url: '/events', method: :post do |f| %>
+          </li>
+          <%=select_tag "event", options_from_collection_for_select(@in_progress_events, "event_name", "event_name")%>
+
+        <div class="mb-3">
+          <%= f.submit "Go"%>
+        </div>
+        <% end %>
+
+        <li>
+        Past Events
+        </li>
+          <li>
+          <%= form_with url: '/events', method: :post do |f| %>
+          </li>
+          <%=select_tag "event", options_from_collection_for_select(@concluded_events, "event_name", "event_name")%>
+
+        <div class="mb-3">
+          <%= f.submit "Go"%>
         </div>
         <% end %>
 

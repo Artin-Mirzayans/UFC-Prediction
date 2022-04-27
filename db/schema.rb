@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_26_234512) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_27_031651) do
   create_table "events", force: :cascade do |t|
     t.string "event_name", null: false
     t.string "f1", null: false
@@ -19,29 +19,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_234512) do
     t.datetime "updated_at", null: false
     t.string "f3", null: false
     t.string "f4", null: false
-    t.string "status"
+    t.string "status", null: false
+    t.string "date", null: false
   end
 
   create_table "predictions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.string "fighter_guess"
-    t.string "method_guess"
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.string "fighter_guess", null: false
+    t.string "method_guess", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "results", force: :cascade do |t|
-    t.integer "event_id"
-    t.string "fighter_actual"
-    t.string "method_actual"
+    t.integer "event_id", null: false
+    t.string "fighter_actual", null: false
+    t.string "method_actual", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "correct_fg", default: 0

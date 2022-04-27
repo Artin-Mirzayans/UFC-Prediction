@@ -17,6 +17,11 @@
     </div>
 
     <div class="mb-3">
+        <%= form.label :date, "Date"%>
+        <%= form.text_field :date, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
         <%= form.label :f1, "Fighter 1"%>
         <%= form.text_field :f1, class: "form-control"%>
     </div>
@@ -36,6 +41,9 @@
         <%= form.label :f4, "Fighter 4"%>
         <%= form.text_field :f4, class: "form-control"%>
     </div>
+
+    <%= form.hidden_field :status, :value => 'Upcoming' %>
+    <%= form.hidden_field :event, :value => @event.event_name %>
 
 
     <div class="mb-3">
