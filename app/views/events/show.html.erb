@@ -1,5 +1,6 @@
  <div>
-  <h3><%= @event.event_name %></h3>
+  <h1><%= @event.event_name %></h3>
+   <h3><%= @event.date %></h2>
 
   <ul>
     <li>
@@ -14,8 +15,8 @@
   
   <% if @prediction1.present? %>
     <%= form_with url: update_prediction_path, model:Prediction,  method: :patch do |form| %>
-    <%= form.select :fighter_guess, [@event.f1, @event.f2] %>
-    <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
+    <%= form.select :fighter_guess, [@event.f1, @event.f2], selected: @prediction1.fighter_guess %>
+    <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"],selected: @prediction1.method_guess %>
     <%= form.hidden_field :hoopla, :value => @prediction1.id %>
     <%= form.submit "Modify"%>
   <% end %>
@@ -46,9 +47,9 @@
    <% if @prediction2.present? %>
 
     <%= form_with url: update_prediction_path, model:Prediction,  method: :patch do |form| %>
-      <%= form.select :fighter_guess, [@event.f3, @event.f4] %>
-      <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"] %>
-      <%= form.hidden_field :hoopla, :value => @prediction1.id %>
+      <%= form.select :fighter_guess, [@event.f3, @event.f4], selected: @prediction2.fighter_guess %>
+      <%= form.select :method_guess, ["TKO/KO", "Submission", "Decision"], selected: @prediction2.method_guess %>
+      <%= form.hidden_field :hoopla, :value => @prediction2.id %>
       <%= form.submit "Modify"%>
     <% end %>
 
@@ -62,6 +63,13 @@
     <%= form.submit "Submit Prediction"%>
   <% end %>
 
+  <% end %>
+
+  <br><br>
+
+   <%= form_with url: update_status_path, model:Event, method: :patch do |form| %>
+      <%= form.select :status, ["Upcoming", "In Progress", "Concluded"], selected: @event_status %>
+      <%= form.submit "Change Status"%>
   <% end %>
 
 </div>

@@ -18,7 +18,7 @@ class AddeventController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:event_name, :f1, :f2, :f3, :f4)
+        params.require(:event).permit(:event_name, :f1, :f2, :f3, :f4, :status, :date)
     end
 
 end
