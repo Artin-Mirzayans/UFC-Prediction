@@ -9,7 +9,7 @@ class EventsController < ApplicationController
         # require 'pry'
         # binding.pry
         
-        
+        @prediction = Prediction.new
         @event = Event.find_by(event_name: params[:event_name])
         @event_status = @event.status
         @predictions = Prediction.where(user_id: Current.user.id, event_id: @event.id)
@@ -28,21 +28,33 @@ class EventsController < ApplicationController
 
     def predict
         
-        @predict = Prediction.new(predict_params)
-        if @predict.save
+        @prediction = Prediction.new(predict_params)
+
+        if @prediction.save
             url = get_event_path(params[:event_name])
             redirect_to url, allow_other_host: true
+
         end
 
     end
 
     def update_prediction
-        @prediction = Prediction.find(params[:prediction][:hoopla])
+        @prediction = Prediction.find(params[:prediction][:id])
         
         if @prediction.update(update_predict_params)
             @event = Event.find_by(id: @prediction.event_id)
             url = get_event_path(@event.event_name)
             redirect_to url, allow_other_host: true
+
+        else
+            @event = Event.find_by(event_name: params[:event_name])
+            @event_status = @event.status
+            @predictions = Prediction.where(user_id: Current.user.id, event_id: @event.id)
+            @prediction_names_list = @predictions.map { |p| p.fighter_guess }
+    
+            @prediction1 = @predictions.find_by(fighter_guess: [@event.f1, @event.f2])
+            @prediction2 = @predictions.find_by(fighter_guess: [@event.f3, @event.f4])
+            render :show
         end
     end
 
@@ -52,7 +64,9 @@ class EventsController < ApplicationController
         if @event.update(update_status_params)
             url = get_event_path(@event.event_name)
             redirect_to url, allow_other_host: true
+            
         end
+
     end
 
     private
@@ -68,6 +82,7 @@ class EventsController < ApplicationController
     def update_status_params
         params.require(:event).permit(:status)
     end
+
 
     
 
