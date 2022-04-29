@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
         redirect_to sign_in_path if Current.user.nil?
     end
 
+    def require_user_admin!
+        redirect_to root_path if Current.user.admin != true
+    end
+
     def getUpcomingEvents
         @upcoming_events = Event.where(status: "Upcoming")
     end

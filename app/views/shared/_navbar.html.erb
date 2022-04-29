@@ -13,7 +13,7 @@
         <%= link_to "About", about_path, class: "nav-link"%>
         </li>
 
-        <% if Current.user %>
+        <% if Current.user && Current.user.admin %>
 
         <li class="nav-item">
         <%= button_to "Add Event", add_path, method: :get, class: "nav-link"%>
@@ -89,11 +89,11 @@
         <% end %>
       <ul>
 
-
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <%= form_with url: "/search", method: :get do |form| %>
+        <%= form.label :query, "Search User:" %>
+        <%= form.text_field :query %>
+        <%= form.submit "Search" %>
+      <% end %>
     </div>
   </div>
 </nav>

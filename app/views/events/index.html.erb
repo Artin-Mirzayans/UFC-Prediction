@@ -1,5 +1,5 @@
 
-<h3>Predicted Correctly: <%=@totalcorrect%>/<%=@total%> (<%= @totalpercentage %>%)</h4>
+<h3>Total Predictions: <%=@totalcorrect%>/<%=@total%> <%if @totalpercentage >= 0%>(<%= @totalpercentage %>%) <%end%></h4>
 
 <h4>Fighter Predictions: <%=@fg_correct%>/<%=@total_fg%></h4>
 <h4>Method Predictions: <%=@mg_correct%>/<%=@total_mg%></h4>
