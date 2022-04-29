@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :require_user_logged_in!
+    before_action :set_current_user, :require_user_logged_in!
 
     def index
         @events = @upcoming_events
@@ -34,8 +34,10 @@ class EventsController < ApplicationController
     end
 
     def route
+        if (params[:event].present?)
         url = get_event_path(params[:event])
         redirect_to url, allow_other_host: true
+        end
     end
 
     def predict
@@ -71,11 +73,12 @@ class EventsController < ApplicationController
 
     def update_status
         @event = Event.find_by(event_name: params[:event_name])
-        
-        if @event.update(update_status_params)
+    
+        if Current.user.admin && @event.update(update_status_params)
             url = get_event_path(@event.event_name)
             redirect_to url, allow_other_host: true
-            
+        else
+            redirect_to root
         end
 
     end
@@ -93,8 +96,6 @@ class EventsController < ApplicationController
     def update_status_params
         params.require(:event).permit(:status)
     end
-
-
     
 
 end

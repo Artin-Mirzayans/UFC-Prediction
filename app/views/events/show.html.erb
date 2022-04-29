@@ -70,11 +70,12 @@
 
   <% end %>
 
+  <%if Current.user.admin%>
   <br><br>
-
+    
    <%= form_with url: update_status_path, model:Event, method: :patch do |form| %>
       <%= form.select :status, ["Upcoming", "In Progress", "Concluded"], selected: @event_status %>
       <%= form.submit "Change Status"%>
   <% end %>
-
+<% end %>
 </div>

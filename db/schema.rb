@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_28_231545) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_29_175747) do
   create_table "events", force: :cascade do |t|
     t.string "event_name", null: false
     t.string "f1", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_28_231545) do
     t.integer "correct_mg", default: 0
     t.integer "incorrect_fg", default: 0
     t.integer "incorrect_mg", default: 0
+    t.boolean "admin", default: false
   end
 
 end

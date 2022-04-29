@@ -1,11 +1,13 @@
 class CloseeventController < ApplicationController
-    before_action :require_user_logged_in!
+    before_action :require_user_admin!
     def index
     end
 
     def route
+        if (params[:event_name].present?)
         url = get_close_event_path(params[:event])
         redirect_to url, allow_other_host: true
+        end
     end
 
     def show
@@ -72,6 +74,11 @@ class CloseeventController < ApplicationController
                 prediction.user.increment!(:incorrect_mg)
             end
 
+
+            @event.update(status: "Concluded")
+
+        else
+            redirect_to root_path
         end
     end
 
