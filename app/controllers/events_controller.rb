@@ -1,8 +1,20 @@
 class EventsController < ApplicationController
-    before_action :set_current_user, :require_user_logged_in!
+    before_action :require_user_logged_in!
 
     def index
         @events = @upcoming_events
+        @fg_correct = Current.user.correct_fg
+        @mg_correct = Current.user.correct_mg
+        @fg_incorrect = Current.user.incorrect_fg
+        @mg_incorrect = Current.user.incorrect_mg
+
+
+        @total_fg = @fg_correct + @fg_incorrect
+        @total_mg = @mg_correct + @mg_incorrect
+        @total = @total_fg +  @total_mg
+        @totalcorrect = @fg_correct + @mg_correct
+        @totalpercentage = (@fg_correct + @mg_correct).fdiv(@totalcorrect)*100
+
     end
 
     def show
@@ -27,10 +39,9 @@ class EventsController < ApplicationController
     end
 
     def predict
-        
         @prediction = Prediction.new(predict_params)
-
         if @prediction.save
+            binding.pry
             url = get_event_path(params[:event_name])
             redirect_to url, allow_other_host: true
 

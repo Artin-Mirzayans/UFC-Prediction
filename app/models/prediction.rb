@@ -1,9 +1,9 @@
 class Prediction < ApplicationRecord
 
     belongs_to :event
+    belongs_to :user
 
-    validate :prediction_no_longer_allowed, on: :create
-    validate :prediction_no_longer_allowed, on: :update
+    validate :prediction_no_longer_allowed
 
 
 

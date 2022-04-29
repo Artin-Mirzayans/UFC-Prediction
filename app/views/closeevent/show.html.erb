@@ -1,0 +1,15 @@
+   <h1><%= @event.event_name %></h3>
+   <h3><%= @event.date %></h2>
+
+   <br><br>
+   
+    <%= form_with url: submit_path, model:Result,  method: :post do |form| %>
+    <%= form.select :f1_fighter_actual, [@event.f1, @event.f2] %>
+    <%= form.select :f1_method_actual, ["TKO/KO", "Submission", "Decision"] %>
+    <br><br>
+    <%= form.select :f2_fighter_actual, [@event.f3, @event.f4] %>
+    <%= form.select :f2_method_actual, ["TKO/KO", "Submission", "Decision"] %>
+    <%= form.hidden_field :event_id, :value => @event.id %>
+    <br><br>
+    <%= form.submit "Submit Result"%>
+    <% end %>

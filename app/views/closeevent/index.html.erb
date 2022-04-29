@@ -1,0 +1,7 @@
+        <%= form_with url: '/close', method: :post do |f| %>
+          <%=select_tag "event", options_from_collection_for_select(@in_progress_events, "event_name", "event_name")%>
+
+        <div class="mb-3">
+          <%= f.submit "Go"%>
+        </div>
+        <% end %>
