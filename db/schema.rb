@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_27_031651) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_28_231545) do
   create_table "events", force: :cascade do |t|
     t.string "event_name", null: false
     t.string "f1", null: false
@@ -34,10 +34,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_031651) do
 
   create_table "results", force: :cascade do |t|
     t.integer "event_id", null: false
-    t.string "fighter_actual", null: false
-    t.string "method_actual", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "f1_fighter_actual", null: false
+    t.string "f1_method_actual", null: false
+    t.string "f2_fighter_actual", null: false
+    t.string "f2_method_actual", null: false
   end
 
   create_table "users", force: :cascade do |t|
