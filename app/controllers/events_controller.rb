@@ -43,7 +43,6 @@ class EventsController < ApplicationController
     def predict
         @prediction = Prediction.new(predict_params)
         if @prediction.save
-            binding.pry
             url = get_event_path(params[:event_name])
             redirect_to url, allow_other_host: true
 

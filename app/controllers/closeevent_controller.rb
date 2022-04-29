@@ -4,7 +4,7 @@ class CloseeventController < ApplicationController
     end
 
     def route
-        if (params[:event_name].present?)
+        if (params[:event].present?)
         url = get_close_event_path(params[:event])
         redirect_to url, allow_other_host: true
         end
@@ -77,8 +77,8 @@ class CloseeventController < ApplicationController
 
             @event.update(status: "Concluded")
 
-        else
             redirect_to root_path
+
         end
     end
 
