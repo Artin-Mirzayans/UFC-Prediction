@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  get "search", to: "search#show"
+
   get "add", to: "addevent#new"
   post "add", to: "addevent#create"
 
