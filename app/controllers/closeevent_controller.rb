@@ -12,6 +12,10 @@ class CloseeventController < ApplicationController
 
     def show
         @event = Event.find_by(event_name: params[:event_name])
+        if !@event
+            redirect_to root_path
+        end
+
     end
 
     def submit

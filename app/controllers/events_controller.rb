@@ -20,17 +20,26 @@ class EventsController < ApplicationController
     def show
         # require 'pry'
         # binding.pry
+
         
         @prediction = Prediction.new
         @event = Event.find_by(event_name: params[:event_name])
-        @event_status = @event.status
-        @predictions = Prediction.where(user_id: Current.user.id, event_id: @event.id)
-        @prediction_names_list = @predictions.map { |p| p.fighter_guess }
 
-        @prediction1 = @predictions.find_by(fighter_guess: [@event.f1, @event.f2])
-        @prediction2 = @predictions.find_by(fighter_guess: [@event.f3, @event.f4])
+        if @event
 
+            @event_status = @event.status
+            @predictions = Prediction.where(user_id: Current.user.id, event_id: @event.id)
+            @prediction_names_list = @predictions.map { |p| p.fighter_guess }
 
+            @prediction1 = @predictions.find_by(fighter_guess: [@event.f1, @event.f2])
+            @prediction2 = @predictions.find_by(fighter_guess: [@event.f3, @event.f4])
+
+            @results = Result.find_by(event_id: @event.id)
+        
+        else
+            redirect_to root_path
+
+        end
     end
 
     def route
@@ -46,6 +55,8 @@ class EventsController < ApplicationController
             url = get_event_path(params[:event_name])
             redirect_to url, allow_other_host: true
 
+        else
+            redirect_to root_path
         end
 
     end
@@ -77,7 +88,7 @@ class EventsController < ApplicationController
             url = get_event_path(@event.event_name)
             redirect_to url, allow_other_host: true
         else
-            redirect_to root
+            redirect_to root_path
         end
 
     end

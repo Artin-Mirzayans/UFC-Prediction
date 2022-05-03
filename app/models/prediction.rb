@@ -9,7 +9,7 @@ class Prediction < ApplicationRecord
 
     def prediction_no_longer_allowed
         if self.event.concluded? || self.event.in_progress?
-            errors.add(:status, "Event Status must be Upcoming")
+            errors.add(:status, ": Event is Locked")
         end
     end
 end

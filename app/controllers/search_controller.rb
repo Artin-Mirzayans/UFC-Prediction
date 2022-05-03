@@ -15,7 +15,7 @@ class SearchController < ApplicationController
             @total_mg = @mg_correct + @mg_incorrect
             @total = @total_fg +  @total_mg
             @totalcorrect = @fg_correct + @mg_correct
-            @totalpercentage = (@fg_correct + @mg_correct).fdiv(@totalcorrect)*100
+            @totalpercentage = ((@totalcorrect).fdiv(@total)*100).round(2)
         
         else
             redirect_to root_path
