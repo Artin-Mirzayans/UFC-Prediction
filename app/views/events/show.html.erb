@@ -17,7 +17,17 @@
 
   <ul>
     <li>
-      <%= @event.f1 %> vs <%= @event.f2 %>
+    <% if @results.present? %>
+      <% if @results.f1_fighter_actual == @event.f1%>
+        <h5><u><%= @event.f1 %></u> vs <%= @event.f2 %></h5>
+
+      <% else %>
+        <h5><%= @event.f1 %> vs <u><%= @event.f2 %></u></h5>
+      <% end %>
+
+    <% else %>
+      <h5><%= @event.f1 %> vs <%= @event.f2 %></h5>
+    <% end %>
     </li>
   </ul>
   
@@ -43,9 +53,18 @@
 <br><br>
 
   <ul>
+    <li>
+    <% if @results.present? %>
+      <% if @results.f2_fighter_actual == @event.f3%>
+        <h5><u><%= @event.f3 %></u> vs <%= @event.f4 %></h5>
 
-     <li>
-      <%= @event.f3 %> vs <%= @event.f4 %>
+      <% else %>
+        <h5><%= @event.f3 %> vs <u><%= @event.f4 %></u></h5>
+      <% end %>
+
+    <% else %>
+      <h5><%= @event.f3 %> vs <%= @event.f4 %></h5>
+    <% end %>
     </li>
   </ul>
 
