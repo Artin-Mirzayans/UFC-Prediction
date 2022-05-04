@@ -13,7 +13,7 @@ class EventsController < ApplicationController
         @total_mg = @mg_correct + @mg_incorrect
         @total = @total_fg +  @total_mg
         @totalcorrect = @fg_correct + @mg_correct
-        @totalpercentage = (@fg_correct + @mg_correct).fdiv(@totalcorrect)*100
+        @totalpercentage = (@fg_correct + @mg_correct).fdiv(@total)*100
 
     end
 
@@ -56,7 +56,14 @@ class EventsController < ApplicationController
             redirect_to url, allow_other_host: true
 
         else
-            redirect_to root_path
+            @event = Event.find_by(event_name: params[:event_name])
+            @event_status = @event.status
+            @predictions = Prediction.where(user_id: Current.user.id, event_id: @event.id)
+            @prediction_names_list = @predictions.map { |p| p.fighter_guess }
+    
+            @prediction1 = @predictions.find_by(fighter_guess: [@event.f1, @event.f2])
+            @prediction2 = @predictions.find_by(fighter_guess: [@event.f3, @event.f4])
+            render :show
         end
 
     end

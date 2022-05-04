@@ -1,0 +1,7 @@
+version: "2.4.1"
+services:
+   web:
+    build: .
+    ports:
+      - "3000:3000"
+    container_name: ufc
