@@ -7,6 +7,7 @@ Check results and compare scores with your friends.
 ### Technologies
 * Ruby 3.1
 * Rails 7
+* Bootstrap
 * SQLite
   * Embedded database
 
@@ -146,4 +147,5 @@ Guest users can only view "about" page.
 * [Rails Docs](https://guides.rubyonrails.org/)
 * [Docker Docs](https://docs.docker.com/)
 * [Docker-Compose Docs](https://docs.docker.com/compose/)
+* [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 * [UFC](https://www.ufc.com/)

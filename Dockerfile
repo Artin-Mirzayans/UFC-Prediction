@@ -11,4 +11,6 @@ RUN bundle install
 
 COPY . .
 
+RUN chmod +x entrypoint.sh
+
 CMD ./entrypoint.sh
