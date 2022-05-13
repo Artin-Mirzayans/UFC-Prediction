@@ -16,7 +16,7 @@ Check results and compare scores with your friends.
 Follow these easy steps to install and start the app:
 
 * Clone Repository
-
+  * If using Windows OS: ```git clone https://github.com/Artin-Mirzayans/UFC-Prediction --config core.autocrlf=input```
 
 * Install Docker & Docker Compose
 
@@ -64,7 +64,7 @@ If you plan to stop the running container and wish to run it again in the future
 * Password (for all users): ["a"]
 
 ## User Features
-Guest users can only view "about" page.
+Guest users can only view "about" page & search user's scores
 
 #### Sign-Up Page
 * Create new account with e-mail/password
